@@ -19,4 +19,4 @@ class App {
   }
 }
 
-export default new App().app; // class ja estanciada
+export default new App().app; // class ja estanciada //server.js

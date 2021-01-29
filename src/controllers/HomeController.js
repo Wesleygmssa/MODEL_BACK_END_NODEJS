@@ -1,10 +1,7 @@
-// class e funcções contrutora inica com letra Maiuscula
-import express from 'express';
+class HomeController {
+  index(req, res) {
+    res.json({ message: 'true' });
+  }
+}
 
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  res.send('ola mundo');
-});
-
-export default router;
+export default new HomeController();
