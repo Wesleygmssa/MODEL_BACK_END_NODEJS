@@ -1,0 +1,10 @@
+// class e funcções contrutora inica com letra Maiuscula
+import express from 'express';
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  res.send('ola mundo');
+});
+
+export default router;
