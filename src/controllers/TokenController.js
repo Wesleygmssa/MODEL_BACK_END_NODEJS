@@ -1,9 +1,9 @@
-// import bcryptjs from 'bcryptjs';
-import User from '../models/Aluno';
+import bcryptjs from 'bcryptjs';
+import User from '../models/User';
 
 class TokenController {
   async store(req, res) {
-    const { email = '', password = '' } = req.body;
+    const { email, password } = req.body;
     if (!email || !password) {
       return res.status(401).json({
         erros: ['Credenciais inválidas'],
@@ -14,16 +14,22 @@ class TokenController {
 
     if (!user) {
       return res.status(401).json({
-        erros: ['Usuário não cadastrado!'],
+        erros: ['Email ou senha incorrenta!'],
       });
     }
-    // const hasgedPassword = await bcryptjs.compare(password, user.password);
-    // verificação de senha
-    if (!(await user.passwordIsValid(password))) {
+
+    const hasgedPassword = await bcryptjs.compare(password, user.password_hash);
+    if (!hasgedPassword) {
       return res.status(401).json({
-        errors: ['Usuário não existe'],
+        errors: ['Email ou senha incorrenta!'],
       });
     }
+    // senha do usuário não for valida
+    // if (!(await user.passwordIsValid(password))) {
+    //   return res.status(401).json({
+    //     errors: ['Usuário não existe'],
+    //   });
+    // }
 
     return res.json(user);
   }
