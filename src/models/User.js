@@ -29,7 +29,7 @@ class User extends Model {
         defaultValue: '',
       },
       password: {
-        type: DataTypes.STRING,
+        type: DataTypes.VIRTUAL,
         defaultValue: '',
         validade: {
           len: {

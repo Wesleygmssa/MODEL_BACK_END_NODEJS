@@ -4,6 +4,7 @@ dotenv.config();
 import './src/database';
 import express from 'express';
 import homeRoutes from './src/routes/home.routes';
+import userRoutes from './src/routes/user.routes';
 
 class App {
   // quando a classs for inicanda iniciar o contructor
@@ -20,6 +21,7 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/users', userRoutes);
   }
 }
 
