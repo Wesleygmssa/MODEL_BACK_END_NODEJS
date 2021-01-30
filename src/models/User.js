@@ -1,4 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
+// DataTypes
 import bcryptjs from 'bcryptjs';
 
 // criando model de users
@@ -8,7 +9,7 @@ class User extends Model {
       nome: {
         type: DataTypes.STRING,
         defaultValue: '',
-        validade: {
+        validate: {
           len: {
             args: [3, 255],
             msg: 'Campo nome deve ter entre 3 e 255 caracters',
@@ -18,9 +19,12 @@ class User extends Model {
       email: {
         type: DataTypes.STRING,
         defaultValue: '',
-        validade: {
+        unique: {
+          msg: 'Email já existe',
+        },
+        validate: {
           isEmail: {
-            msg: 'Email invalido',
+            msg: 'Email inválido',
           },
         },
       },
@@ -31,7 +35,7 @@ class User extends Model {
       password: {
         type: DataTypes.VIRTUAL,
         defaultValue: '',
-        validade: {
+        validate: {
           len: {
             args: [6, 50],
             msg: 'A senha  deve ter entre 6 e 50 caracters',
@@ -42,7 +46,9 @@ class User extends Model {
       sequelize,
     });
     this.addHook('beforeSave', async (user) => {
-      user.password_hash = await bcryptjs.hash(user.password, 8);
+      if (user.password) {
+        user.password_hash = await bcryptjs.hash(user.password, 8);
+      }
     });
     return this;
   }
