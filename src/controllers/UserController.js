@@ -59,7 +59,7 @@ class UserController {
           erros: ['Usuário não existe'],
         });
       }
-      await user.destroy(req.body);
+      await user.destroy();
       return res.status(200).json(null);
     } catch (e) {
       return res.status(400).json({ errors: e.errors.map((err) => err.message) });

@@ -2,8 +2,8 @@ import Aluno from '../models/Aluno';
 
 class HomeController {
   async index(req, res) {
-    const Index = await Aluno.findAll();
-    return res.json(Index);
+    const alunos = await Aluno.findAll();
+    return res.json(alunos);
   }
 }
 
