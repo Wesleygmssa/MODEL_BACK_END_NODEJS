@@ -8,7 +8,7 @@ import userRoutes from './src/routes/user.routes';
 import tokenRoutes from './src/routes/token.routes';
 
 class App {
-  // quando a classs for inicanda iniciar o contructor
+  // iniciar o contructor
   constructor() {
     this.app = express();
     this.middlewares();
