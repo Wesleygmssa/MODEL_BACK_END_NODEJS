@@ -8,12 +8,10 @@ class AlunoController {
 
   async store(req, res) {
     try {
-      const aluno = Aluno.create(req.body);
-      return res.status(200).json(aluno);
+      const aluno = await Aluno.create(req.body);
+      return res.status(200).json({ aluno });
     } catch (e) {
-      return res.status(400).json({
-        erros: e.erros.map((err) => err.message),
-      });
+      return res.status(400).json({ errors: e.errors.map((err) => err.message) });
     }
   }
 
@@ -31,7 +29,7 @@ class AlunoController {
           erros: ['Aluno não encontrado!'],
         });
       }
-      const AlunoAtualizado = aluno.update(req.body);
+      const AlunoAtualizado = await aluno.update(req.body);
       return res.status(200).json(AlunoAtualizado);
     } catch (e) {
       return res.status(400).json({
