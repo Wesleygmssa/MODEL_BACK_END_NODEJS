@@ -6,6 +6,14 @@ import multer from 'multer';
 const tmpFolder = path.resolve(__dirname, '..', '..', 'uploads');
 
 export default {
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpeg') {
+      return cb(new multer.MulterError('Arquivo precisa ser PNG ou JPG'));
+    }
+
+    return cb(null, true);
+  },
+
   tmpFolder,
   uploadsFolder: path.resolve(tmpFolder, 'uploads'),
 
