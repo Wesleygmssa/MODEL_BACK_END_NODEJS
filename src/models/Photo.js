@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
 // criando model
-class Photos extends Model {
+class Photo extends Model {
   static init(sequelize) {
     super.init({
       originalname: {
@@ -31,8 +31,8 @@ class Photos extends Model {
   }
 
   static associate(models) {
-    // this.belongsTo(models.Alunp, { foreignKey: 'aluno_id' });
+    this.belongsTo(models.Aluno, { foreignKey: 'aluno_id' });
   }
 }
 
-module.exports = Photos;
+module.exports = Photo;
