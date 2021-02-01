@@ -26,6 +26,7 @@ class TokenController {
         errors: ['Email ou senha incorrenta!'],
       });
     }
+    // gerando token
     const { id } = user;
     const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET, {
       expiresIn: process.env.TOKEN_EXPIRATION,

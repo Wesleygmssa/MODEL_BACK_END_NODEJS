@@ -1,4 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
+import appConfig from '../config/appConfig';
 
 // criando model
 class Photo extends Model {
@@ -22,7 +23,12 @@ class Photo extends Model {
           },
         },
       },
-
+      url: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${appConfig.url}/tmp/${this.getDataValue('filename')}`;
+        },
+      },
     }, {
       sequelize,
       tableName: 'photos',

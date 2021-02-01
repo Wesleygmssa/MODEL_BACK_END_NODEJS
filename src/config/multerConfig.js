@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import multer from 'multer';
 
 // SALVANDO LOCALMENTE NA MÁQUINA
-const tmpFolder = path.resolve(__dirname, '..', '..', 'uploads');
+const tmpFolder = path.resolve(__dirname, '..', '..', 'uploads', 'tmp');
 
 export default {
   fileFilter: (req, file, cb) => {
