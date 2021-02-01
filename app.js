@@ -12,6 +12,19 @@ import tokenRoutes from './src/routes/token.routes';
 import alunoRoutes from './src/routes/aluno.routes';
 import photoRoutes from './src/routes/photos.routes';
 
+const whiteLis = [
+  'https://react2.otaviomiranda.com.br',
+  'http://localhost:3333',
+];
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteLis.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
 class App {
   // iniciar o contructor
   constructor() {
@@ -21,7 +34,7 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
     this.app.use(helmet());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
