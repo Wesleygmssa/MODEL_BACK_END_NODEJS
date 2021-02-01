@@ -26,7 +26,7 @@ class Photo extends Model {
       url: {
         type: DataTypes.VIRTUAL,
         get() {
-          return `${appConfig.url}/tmp/${this.getDataValue('filename')}`;
+          return `${appConfig.url}/imagens/${this.getDataValue('filename')}`;
         },
       },
     }, {
